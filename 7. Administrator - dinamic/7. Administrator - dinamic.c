@@ -56,4 +56,5 @@ void tests()
     test_Modifica();
     test_Sterge();
     test_not_negative();
+    test_Adauga_predefinite();
 }

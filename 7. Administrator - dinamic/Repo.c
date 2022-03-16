@@ -236,8 +236,13 @@ void test_Sterge()
 	c1.suma = 15;
 	strcpy_s(c1.tip, 20, "apa");
 	Adauga(c1, &l1);
+	cheltuiala c2 = init_cheltuiala();
+	c1.id = 98;
+	c1.suma = 15;
+	strcpy_s(c1.tip, 20, "apa");
+	Adauga(c2, &l1);
 	Sterge(1321, &l1);
 
-	assert(l1.len == 0);
+	assert(l1.len == 1);
 	distroy_Lista(&l1);
 }

@@ -59,3 +59,12 @@ void test_Adauga_s()
 
 	distroy_Lista(&l);
 }
+
+void test_Adauga_predefinite()
+{
+	Lista l = init_Lista();
+	Adauga_predefinite(&l);
+	assert(l.array[0].id == 1);
+	assert(l.array[5].suma == 8);
+	assert(l.array[4].id == 4);
+}
