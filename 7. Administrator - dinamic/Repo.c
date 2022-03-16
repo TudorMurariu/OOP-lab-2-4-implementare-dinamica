@@ -281,10 +281,28 @@ void test_Filtrare3()
 
 void test_cmp() 
 {
+	cheltuiala c1 = init_cheltuiala();
+	cheltuiala c2 = init_cheltuiala();
+	c1.suma = 15;
+	c2.suma = 77;
+	strcpy_s(c1.tip, 20, "apa");
+	strcpy_s(c1.tip, 20, "gaz");
 
+	assert(cmp(c1, c2, 1, 1) == 0);
+	assert(cmp(c1, c2, 1, 2) == 1);
+	assert(cmp(c1, c2, 2, 1) == 1);
+	assert(cmp(c1, c2, 2, 2) == 0);
+	assert(cmp(c1, c2, 7, 1) == -1);
+
+	distruge_cheltuiala(&c1);
+	distruge_cheltuiala(&c2);
 }
 void test_Sortare()
 {
 	Lista l = init_Lista();
 	Adauga_predefinite(&l);
+	Lista l1 = Sortare(l, 1, 1);
+	assert(l1.array[2].id == 1);
+	assert(l1.array[2].suma == 377);
+	distroy_Lista(&l);
 }
