@@ -1,6 +1,8 @@
 #pragma once
 #include "Lista.h"
 #include <assert.h>
+#include "Service.h"
+#include "UI.h"
 
 void Adauga(cheltuiala c, Lista* l);
 void Modifica(cheltuiala c, Lista* l);
@@ -16,3 +18,10 @@ Lista Sortare(Lista l, int x, int mod);
 void test_Adauga();
 void test_Modifica();
 void test_Sterge();
+
+void test_Filtrare1();
+void test_Filtrare2();
+void test_Filtrare3();
+
+void test_cmp();
+void test_Sortare();

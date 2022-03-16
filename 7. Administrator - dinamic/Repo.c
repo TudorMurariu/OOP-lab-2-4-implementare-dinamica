@@ -246,3 +246,45 @@ void test_Sterge()
 	assert(l1.len == 1);
 	distroy_Lista(&l1);
 }
+
+
+void test_Filtrare1()
+{
+	Lista l = init_Lista();
+	Adauga_predefinite(&l);
+	Lista* new_l = Filtrare1(5, &l);
+	assert(new_l->array[0].suma == 8);
+	assert(strcmp(new_l->array[0].tip,"gaz") == 0);
+	distroy_Lista(new_l);
+	distroy_Lista(&l);
+}
+void test_Filtrare2()
+{
+	Lista l = init_Lista();
+	Adauga_predefinite(&l);
+	Lista* new_l = Filtrare2(8, &l);
+	assert(new_l->array[0].id == 2);
+	assert(strcmp(new_l->array[0].tip, "canal") == 0);
+	distroy_Lista(new_l);
+	distroy_Lista(&l);
+}
+void test_Filtrare3()
+{
+	Lista l = init_Lista();
+	Adauga_predefinite(&l);
+	Lista* new_l = Filtrare3("apa", &l);
+	assert(new_l->array[0].suma == 377);
+	assert(new_l->array[0].id == 1);
+	distroy_Lista(new_l);
+	distroy_Lista(&l);
+}
+
+void test_cmp() 
+{
+
+}
+void test_Sortare()
+{
+	Lista l = init_Lista();
+	Adauga_predefinite(&l);
+}

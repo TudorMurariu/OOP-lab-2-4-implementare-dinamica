@@ -57,4 +57,9 @@ void tests()
     test_Sterge();
     test_not_negative();
     test_Adauga_predefinite();
+    test_Filtrare1();
+    test_Filtrare2();
+    test_Filtrare3();
+    test_cmp();
+    test_Sortare();
 }
