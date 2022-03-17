@@ -173,6 +173,7 @@ void start_console(Lista* lista_cheltuieli)
 			printf("6 pentru a vedea toate comenzile\n");
 			printf("7 pentru a vedea toate cheltuielile\n");
 			printf("8 pentru a adauga in lista niste cheltuieli predefinite.\n");
+			printf("9 sortare noua");
 			break;
 		case 7:
 			Afisare(*lista_cheltuieli);
@@ -180,6 +181,19 @@ void start_console(Lista* lista_cheltuieli)
 		case 8:
 			Adauga_predefinite(lista_cheltuieli);
 			printf("Cheltuielile au fost adaugate.\n");
+			break;
+		case 9:
+			printf("Dupa ce vreti sa sortati lista?\n");
+			printf("1 - dupa suma\n");
+			printf("2 - dupa tip\n");
+
+			scanf_s("%d", &x);
+
+			printf("1 - Crescator\n2 - Descrescator\n");
+			scanf_s("%d", &mod);
+
+			sort1(lista_cheltuieli, x, mod);
+			Afisare(*lista_cheltuieli);
 			break;
 		default:
 			break;

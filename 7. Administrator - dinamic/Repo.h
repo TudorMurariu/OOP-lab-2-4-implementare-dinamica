@@ -25,3 +25,5 @@ void test_Filtrare3();
 
 void test_cmp();
 void test_Sortare();
+void sort1(Lista* l, int x, int mod);
+void test_sort1();

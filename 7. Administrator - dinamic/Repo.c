@@ -7,7 +7,7 @@ void Adauga(cheltuiala c, Lista* l)
 	/// </summary>
 	/// <param name="c"></param>
 	/// <param name="l"></param> 
-	
+
 	if (l->capacitate <= l->len + 1)
 	{
 		int capacitate = 2 * l->capacitate;
@@ -81,7 +81,7 @@ Lista* Filtrare1(int id, Lista* l)
 			cheltuiala c1 = init_cheltuiala();
 			c1.id = l->array[i].id;
 			c1.suma = l->array[i].suma;
-			strcpy_s(c1.tip,20, l->array[i].tip);
+			strcpy_s(c1.tip, 20, l->array[i].tip);
 			Adauga(c1, &new_L);
 		}
 	}
@@ -139,7 +139,7 @@ Lista* Filtrare3(char tip[21], Lista* l)
 	return &new_L;
 }
 
-int cmp(cheltuiala a,cheltuiala b,int x,int mod)
+int cmp(cheltuiala a, cheltuiala b, int x, int mod)
 {
 	if (x == 1)
 	{
@@ -152,7 +152,7 @@ int cmp(cheltuiala a,cheltuiala b,int x,int mod)
 	{
 		/// tip
 		if (mod == 1)
-			return strcmp(a.tip,b.tip) >= 1;
+			return strcmp(a.tip, b.tip) >= 1;
 		return strcmp(a.tip, b.tip) < 0;
 	}
 	return -1;
@@ -177,6 +177,7 @@ Lista Sortare(Lista l, int x, int mod)
 		for (int i = 0; i < l.len - 1; i++)
 			if (cmp(l.array[i], l.array[i + 1], x, mod))
 			{
+				//interschimbam
 				cheltuiala aux = l.array[i];
 				l.array[i] = l.array[i + 1];
 				l.array[i + 1] = aux;
@@ -184,6 +185,48 @@ Lista Sortare(Lista l, int x, int mod)
 			}
 	}
 	return l;
+}
+
+void sort1(Lista* l, int x, int mod) 
+{
+	/// <summary>
+	/// Sortare noua prin selectie
+	/// </summary>
+	/// <param name="l"></param>
+	/// <param name="x"></param>
+	/// <param name="mod"></param>
+	
+	int i = 0, j = 0;
+	for (i = 0; i < l->len; i++) 
+	{	
+		int ind = i;
+		cheltuiala aux = init_cheltuiala();
+		aux.id = l->array[i].id;
+		aux.suma = l->array[i].suma;
+		strcpy_s(aux.tip, 20, l->array[i].tip);
+
+		for(int j = i+1;j < l->len;j++)
+		{
+			if (cmp(aux, l->array[j], x, mod))
+			{
+				aux.id = l->array[j].id;
+				aux.suma = l->array[j].suma;
+				strcpy_s(aux.tip, 20, l->array[j].tip);
+				ind = j;
+			}
+		}
+		if (ind != i)
+		{
+			l->array[ind].id = l->array[i].id;
+			l->array[ind].suma = l->array[i].suma;
+			strcpy_s(l->array[ind].tip, 20, l->array[i].tip);
+
+			l->array[i].id = aux.id;
+			l->array[i].suma = aux.suma;
+			strcpy_s(l->array[i].tip, 20, aux.tip);
+		}
+		distruge_cheltuiala(&aux);
+	}
 }
 
 
@@ -254,7 +297,7 @@ void test_Filtrare1()
 	Adauga_predefinite(&l);
 	Lista* new_l = Filtrare1(5, &l);
 	assert(new_l->array[0].suma == 8);
-	assert(strcmp(new_l->array[0].tip,"gaz") == 0);
+	assert(strcmp(new_l->array[0].tip, "gaz") == 0);
 	distroy_Lista(new_l);
 	distroy_Lista(&l);
 }
@@ -279,7 +322,7 @@ void test_Filtrare3()
 	distroy_Lista(&l);
 }
 
-void test_cmp() 
+void test_cmp()
 {
 	cheltuiala c1 = init_cheltuiala();
 	cheltuiala c2 = init_cheltuiala();
@@ -304,5 +347,15 @@ void test_Sortare()
 	Lista l1 = Sortare(l, 1, 1);
 	assert(l1.array[2].id == 1);
 	assert(l1.array[2].suma == 377);
+	distroy_Lista(&l);
+}
+
+void test_sort1()
+{
+	Lista l = init_Lista();
+	Adauga_predefinite(&l);
+	sort1(&l, 1, 1);
+	assert(l.array[2].id == 1);
+	assert(l.array[2].suma == 377);
 	distroy_Lista(&l);
 }

@@ -62,4 +62,5 @@ void tests()
     test_Filtrare3();
     test_cmp();
     test_Sortare();
+    test_sort1();
 }
